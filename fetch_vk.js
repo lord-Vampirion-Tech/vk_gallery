@@ -2,8 +2,8 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 
 const TOKEN = process.env.VK_TOKEN; // токен берём из GitHub Secrets
-const ALBUM_ID = '164068548';       // ID альбома (из ссылки)
-const OWNER_ID = '-44163951';      // ID группы (ставим минус перед ID сообщества)
+const ALBUM_ID = '000';       // ID альбома (из ссылки)
+const OWNER_ID = '364112563';      // ID группы (ставим минус перед ID сообщества)
 
 async function fetchPhotos() {
   const url = 'https://api.vk.com/method/photos.get?owner_id=${OWNER_ID}&album_id=${ALBUM_ID}&access_token=${TOKEN}&v=5.131';
