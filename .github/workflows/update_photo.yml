@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Проверка содержимого
+        run: ls -R
+        
       - name: Установить Node.js
         uses: actions/setup-node@v3
         with:
