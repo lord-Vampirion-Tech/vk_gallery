@@ -6,7 +6,7 @@ const ALBUM_ID = '164068548';       // ID альбома (из ссылки)
 const OWNER_ID = '-44163951';      // ID группы (ставим минус перед ID сообщества)
 
 async function fetchPhotos() {
-  const url = https://api.vk.com/method/photos.get?owner_id=${OWNER_ID}&album_id=${ALBUM_ID}&access_token=${TOKEN}&v=5.131;
+  const url = 'https://api.vk.com/method/photos.get?owner_id=${OWNER_ID}&album_id=${ALBUM_ID}&access_token=${TOKEN}&v=5.131';
 
   const res = await fetch(url);
   const data = await res.json();
