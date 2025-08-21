@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://vk.com/js/api/openapi.js?169"></script>
+  <script>
+    VK.init({ apiId: 0, onlyWidgets: true });
+  </script>
+  <title>Визитка художника</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom, #1c1c1c, #121212);
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #444;
+      margin-bottom: 15px;
+    }
+
+    header h1 {
+      margin: 10px 0 5px;
+      font-size: 1.8em;
+    }
+
+    header p {
+      margin: 5px 0;
+      color: #aaa;
+    }
+
+    .links {
+      margin-top: 15px;
+    }
+
+    .links a {
+      margin: 0 10px;
+      color: #4da6ff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: #82c0ff;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    main h2 {
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #222;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <!-- <img src="avatar.jpg" alt="Аватар художника"> -->
+    <h1>Никнейм_Художника</h1>
+    <p>✉️ yourmail@example.com</p>
+    <div class="links">
+      <a href="https://vk.com/yourpage" target="_blank">VK</a>
+      <a href="https://instagram.com/" target="_blank">Instagram</a>
+      <a href="https://artstation.com/" target="_blank">ArtStation</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>Мои работы</h2>
+    <!-- Виджет альбома ВК -->
+    <div id="vk_photos"></div>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    <script type="text/javascript">
+      VK.Widgets.Group("vk_photos", {mode:5, width: "600" }, "44163951_164068548"); 
+    </script>
+  </main>
+
+</body>
+
+</html>
