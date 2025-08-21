@@ -1,30 +1,140 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Галерея ВК</title>
+  <script src="https://vk.com/js/api/openapi.js?169"></script>
+  <script>
+    VK.init({ apiId: 0, onlyWidgets: true });
+  </script>
+  <title>Визитка художника</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #111; color: #fff; }
-    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
-    img { max-width: 200px; border-radius: 8px; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom, #1c1c1c, #121212);
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #444;
+      margin-bottom: 15px;
+    }
+
+    header h1 {
+      margin: 10px 0 5px;
+      font-size: 1.8em;
+    }
+
+    header p {
+      margin: 5px 0;
+      color: #aaa;
+    }
+
+    .links {
+      margin-top: 15px;
+    }
+
+    .links a {
+      margin: 0 10px;
+      color: #4da6ff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: #82c0ff;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    main h2 {
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #222;
+      margin-top: 40px;
+    }
   </style>
 </head>
-<body>
-  <h1>Фото из альбома ВК</h1>
-  <div class="gallery" id="gallery"></div>
 
-  <script>
-    fetch('photos.json')
-      .then(res => res.json())
-      .then(data => {
-        const gallery = document.getElementById('gallery');
-        data.forEach(url => {
-          const img = document.createElement('img');
-          img.src = url;
-          gallery.appendChild(img);
-        });
-      });
-  </script>
+<body>
+
+  <header>
+    <!-- <img src="avatar.jpg" alt="Аватар художника"> -->
+    <h1>Никнейм_Художника</h1>
+    <p>✉️ yourmail@example.com</p>
+    <div class="links">
+      <a href="https://vk.com/yourpage" target="_blank">VK</a>
+      <a href="https://instagram.com/" target="_blank">Instagram</a>
+      <a href="https://artstation.com/" target="_blank">ArtStation</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>Мои работы</h2>
+    <!-- Виджет альбома ВК --> 
+    <div id="gallery"></div>
+    
+    <script>
+      async function loadVKPhotos() {
+        const albumURL = 'https://vk.com/album-44163951_164068548';
+        const galleryDiv = document.getElementById('gallery');
+
+        try {
+          const res = await fetch(albumURL);
+          const html = await res.text();
+
+          // Регулярка для поиска ссылок на картинки
+          const regex = /"url":"(https:\\/\\/[^"]+?)"/g;
+          let match;
+          const links = [];
+
+          while ((match = regex.exec(html)) !== null) {
+            links.push(match[1].replace(/\\\//g, '/'));
+          }
+
+          // Создаём галерею
+          links.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.style.width = '200px';
+            img.style.margin = '5px';
+            galleryDiv.appendChild(img);
+          });
+
+          console.log("Загружено " + links.length + " фото.");
+        } catch (err) {
+          console.error('Ошибка при загрузке фото:', err);
+        }
+      }
+
+      loadVKPhotos();
+    </script>
+  </main>
+
 </body>
+
 </html>
