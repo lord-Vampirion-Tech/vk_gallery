@@ -95,12 +95,12 @@
 
   <main>
     <h2>Мои работы</h2>
-    <!-- Виджет альбома ВК --> 
+    <!-- Виджет альбома ВК -->
     <div id="gallery"></div>
-    
+
     <script>
       async function loadVKPhotos() {
-        const albumURL = 'https://vk.com/album-44163951_164068548';
+        const albumURL = 'https://vk.com/album-199422640_275384749';
         const galleryDiv = document.getElementById('gallery');
 
         try {
@@ -108,12 +108,12 @@
           const html = await res.text();
 
           // Регулярка для поиска ссылок на картинки
-          const regex = /"url":"(https:\\/\\/[^"]+?)"/g;
+          const regex = '/"url":"(https:\\/\\/[^"]+?)"/g';
           let match;
           const links = [];
 
           while ((match = regex.exec(html)) !== null) {
-            links.push(match[1].replace(/\\\//g, '/'));
+            links.push(match[1].replace('/\\\//g', '/'));
           }
 
           // Создаём галерею
